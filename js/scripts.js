@@ -68,7 +68,6 @@ var checkWinCondition = function(board, symbol) {
 };
 
 var changeGameBoard = function(turn, space) {
-  console.log(turn);
   if (thisBoard.spaces[space].value === ' ') {
     $(".space" + space).append("<img src='img/" + turn.symbol + ".png'>");
     thisBoard.spaces[space].value = turn.symbol;
@@ -114,8 +113,11 @@ $(function() {
   });
 
   $(".space1").click(function(){
+
     changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
+
     checkWinCondition(thisBoard, player2.symbol);
+
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
       if (player1.myTurn) {
