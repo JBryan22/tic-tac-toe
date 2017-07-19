@@ -13,42 +13,61 @@
   </head>
   <body>
     <div class="outer-container">
-      <div class="start-game">
-        <button id="begin" type="click" class="btn btn-success">Start Game</button>
+    <div class="jumbotron">
+      <h1>Tic-Tac-Toe</h1>
+    </div>
+    <div class="start-setup">
+      <h2>Setup Players:<h2>
+      <form id="player-setup">
+        <div class="form-group">
+          <label for="player1Name">Player 1</label>
+          <input class="form-control" id="player1Name" type="text">
+        </div>
+        <div class="form-group">
+          <label for="player2Name">Player 2</label>
+          <input class="form-control" id="player2Name" type="text">
+        </div>
+      </form>
+      <button id="begin" type="click" class="btn btn-success">Start Game</button>
+    </div>
+      <div class="display">
+        <h2 class="playerOneScore"></h2>
+        <h2 class="playerTwoScore"></h2>
+        <h2 class="nameTurn"></h2>
       </div>
 
       <div class="row row1">
-        <div class="tic-tac-space spaceOne">
+        <div class="tic-tac-space space1">
 
         </div>
-        <div class="tic-tac-space spaceTwo">
+        <div class="tic-tac-space space2">
 
         </div>
-        <div class="tic-tac-space spaceThree">
+        <div class="tic-tac-space space3">
 
         </div>
       </div>
 
       <div class="row row2">
-        <div class="tic-tac-space spaceFour">
+        <div class="tic-tac-space space4">
 
         </div>
-        <div class="tic-tac-space spaceFive">
+        <div class="tic-tac-space space5">
 
         </div>
-        <div class="tic-tac-space spaceSix">
+        <div class="tic-tac-space space6">
 
         </div>
       </div>
 
       <div class="row row3">
-        <div class="tic-tac-space spaceSeven">
+        <div class="tic-tac-space space7">
 
         </div>
-        <div class="tic-tac-space spaceEight">
+        <div class="tic-tac-space space8">
 
         </div>
-        <div class="tic-tac-space spaceNine">
+        <div class="tic-tac-space space9">
 
         </div>
       </div>
