@@ -40,7 +40,7 @@ Board.prototype.resetBoard = function() {
   });
 };
 
-var endGame = function(player) {
+var gameWin = function(player) {
   if (player1.myTurn) {
     player1.score += 2;
   }
@@ -75,8 +75,7 @@ var changeGameBoard = function(turn, space) {
 };
 
 var checkTurn = function(player) {
-  console.log(player1.turn)
-  if (player1.turn) {
+  if (player1.myTurn) {
     return player1;
   } else {
     return player2;
@@ -116,7 +115,9 @@ $(function() {
 
     changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
 
-    checkWinCondition(thisBoard, player2.symbol);
+    if (checkWinCondition(thisBoard, player2.symbol)) {
+      gameWin();
+    }
 
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
