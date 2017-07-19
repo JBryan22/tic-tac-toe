@@ -1,3 +1,8 @@
+function Player(number, symbol) {
+  this.number = number;
+  this.symbol = symbol;
+}
+
 function Space(spot) {
   this.spot = spot;
   this.value = " ";
@@ -12,12 +17,23 @@ function Board() {
   this.spaces = spacesArr;
 };
 
-var thisBoard1 = new Board();
+  var thisBoard;
+  var Player1;
+  var Player2;
 
 $(function() {
 
+  $("#begin").click(function() {
+    thisBoard = new Board();
+    Player1 = new Player(1, 'X');
+    Player2 = new Player(2, 'O');
+  });
+
   $(".spaceOne").click(function(){
-    $(".spaceOne").append("<img src='img/X.png'>")
+    if (thisBoard.spaces[1].value === ' ') {
+      $(".spaceOne").append("<img src='img/X.png'>")
+      thisBoard.spaces[1].value = 'X';
+    }
   });
 
   $(".spaceTwo").click(function(){
