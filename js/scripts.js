@@ -1,3 +1,8 @@
+var thisBoard;
+var player1;
+var player2;
+var winningLines = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
+
 function Player(myTurn, symbol) {
   this.myTurn = myTurn;
   this.symbol = symbol;
@@ -17,9 +22,23 @@ function Board() {
   this.spaces = spacesArr;
 };
 
-  var thisBoard;
-  var player1;
-  var player2;
+var checkWinCondition = function(board, symbol) {
+  winningLines.forEach(function(winningArray) {
+    if (board.spaces[winningArray[0]].value === symbol &&
+        board.spaces[winningArray[1]].value === symbol &&
+        board.spaces[winningArray[2]].value === symbol)
+        {
+          alert('You win!');
+        };
+  });
+
+
+  // console.log(winningLines[board.spaces[1].value]);
+  //  return winningLines[board.spaces[1].value];
+  // for (var i = 1; i <= 9; i++) {
+  //   winningLines(board.spaces[i].value)
+  // }
+};
 
 $(function() {
 
@@ -34,9 +53,11 @@ $(function() {
       if (player1.myTurn) {
         $(".spaceOne").append("<img src='img/" + player1.symbol + ".png'>");
         thisBoard.spaces[1].value = player1.symbol;
+        checkWinCondition(thisBoard, player1.symbol);
       } else {
         $(".spaceOne").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[1].value = player1.symbol;
+        thisBoard.spaces[1].value = player2.symbol;
+        checkWinCondition(thisBoard, player2.symbol);
       }
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
@@ -48,12 +69,15 @@ $(function() {
       if (player1.myTurn) {
         $(".spaceTwo").append("<img src='img/" + player1.symbol + ".png'>");
         thisBoard.spaces[2].value = player1.symbol;
+        checkWinCondition(thisBoard, player1.symbol);
       } else {
         $(".spaceTwo").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[2].value = player1.symbol;
+        thisBoard.spaces[2].value = player2.symbol;
+        checkWinCondition(thisBoard, player2.symbol);
       }
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
+
     }
   });
 
@@ -62,9 +86,11 @@ $(function() {
       if (player1.myTurn) {
         $(".spaceThree").append("<img src='img/" + player1.symbol + ".png'>");
         thisBoard.spaces[3].value = player1.symbol;
+        checkWinCondition(thisBoard, player1.symbol);
       } else {
         $(".spaceThree").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[3].value = player1.symbol;
+        thisBoard.spaces[3].value = player2.symbol;
+        checkWinCondition(thisBoard, player2.symbol);
       }
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
@@ -76,9 +102,11 @@ $(function() {
       if (player1.myTurn) {
         $(".spaceFour").append("<img src='img/" + player1.symbol + ".png'>");
         thisBoard.spaces[4].value = player1.symbol;
+        checkWinCondition(thisBoard, player1.symbol);
       } else {
         $(".spaceFour").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[4].value = player1.symbol;
+        thisBoard.spaces[4].value = player2.symbol;
+        checkWinCondition(thisBoard, player2.symbol);
       }
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
@@ -90,9 +118,11 @@ $(function() {
       if (player1.myTurn) {
         $(".spaceFive").append("<img src='img/" + player1.symbol + ".png'>");
         thisBoard.spaces[5].value = player1.symbol;
+        checkWinCondition(thisBoard, player1.symbol);
       } else {
         $(".spaceFive").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[5].value = player1.symbol;
+        thisBoard.spaces[5].value = player2.symbol;
+        checkWinCondition(thisBoard, player2.symbol);
       }
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
@@ -104,9 +134,11 @@ $(function() {
       if (player1.myTurn) {
         $(".spaceSix").append("<img src='img/" + player1.symbol + ".png'>");
         thisBoard.spaces[6].value = player1.symbol;
+        checkWinCondition(thisBoard, player1.symbol);
       } else {
         $(".spaceSix").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[6].value = player1.symbol;
+        thisBoard.spaces[6].value = player2.symbol;
+        checkWinCondition(thisBoard, player2.symbol);
       }
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
@@ -118,9 +150,11 @@ $(function() {
       if (player1.myTurn) {
         $(".spaceSeven").append("<img src='img/" + player1.symbol + ".png'>");
         thisBoard.spaces[7].value = player1.symbol;
+        checkWinCondition(thisBoard, player1.symbol);
       } else {
         $(".spaceSeven").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[7].value = player1.symbol;
+        thisBoard.spaces[7].value = player2.symbol;
+        checkWinCondition(thisBoard, player2.symbol);
       }
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
@@ -132,9 +166,11 @@ $(function() {
       if (player1.myTurn) {
         $(".spaceEight").append("<img src='img/" + player1.symbol + ".png'>");
         thisBoard.spaces[8].value = player1.symbol;
+        checkWinCondition(thisBoard, player1.symbol);
       } else {
         $(".spaceEight").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[8].value = player1.symbol;
+        thisBoard.spaces[8].value = player2.symbol;
+        checkWinCondition(thisBoard, player2.symbol);
       }
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
@@ -146,9 +182,11 @@ $(function() {
       if (player1.myTurn) {
         $(".spaceNine").append("<img src='img/" + player1.symbol + ".png'>");
         thisBoard.spaces[9].value = player1.symbol;
+        checkWinCondition(thisBoard, player1.symbol);
       } else {
         $(".spaceNine").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[9].value = player1.symbol;
+        thisBoard.spaces[9].value = player2.symbol;
+        checkWinCondition(thisBoard, player2.symbol);
       }
       player1.myTurn = !player1.myTurn;
       player2.myTurn = !player2.myTurn;
