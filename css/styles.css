@@ -1,9 +1,21 @@
+body {
+  background-color: beige;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
 .tic-tac-space {
   border: 1px solid black;
   height: 200px;
   width: 32%;
   display: inline-block;
   cursor:pointer;
+}
+
+.jumbotron {
+  text-align: center;
+  margin-right: 3%;
+  border-radius: 10px;
+  background-color: #daf7c0;
 }
 
 .display-board {
