@@ -19,6 +19,14 @@
     </div>
     <div class="start-setup">
       <h2>Setup Players:<h2>
+      <div class="player-choice">
+        <h3>Would you like two players or a computer?</h3>
+        <button id="humanChoice" type="click">Human</button>
+        <button id="computerChoice" type="click">Computer</button>
+      </div>
+    </div>
+
+    <div class="human-players">
       <form id="player-setup">
         <div class="form-group">
           <label for="player1Name">Player 1 Name:</label>
@@ -29,13 +37,25 @@
           <input class="form-control" id="player2Name" type="text">
         </div>
       </form>
-      <button id="begin" type="click" class="btn btn-success">Start Game</button>
     </div>
+
+    <div class="human-computer">
+      <form id="computer-setup">
+        <div class="form-group">
+          <label for="player1Name">Your Name:</label>
+          <input class="form-control" id="player1Name" type="text">
+        </div>
+      </form>
+    </div>
+
+    <div class="board-setup">
+      <button id="begin" type="click" class="btn btn-success">Start Game</button>
       <div class="display">
         <h2 class="playerOneScore"></h2>
         <h2 class="playerTwoScore"></h2>
         <h2 class="nameTurn"></h2>
       </div>
+    </div>
 
       <div class="restart-match">
         <form>

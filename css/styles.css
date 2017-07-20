@@ -18,6 +18,18 @@ body {
   background-color: #daf7c0;
 }
 
+.start-setup {
+  display: none;
+}
+
+.human-players {
+  display: none;
+}
+
+.human-computer {
+  display: none;
+}
+
 .display-board {
   display: none;
 }
@@ -28,6 +40,10 @@ body {
 
 .outer-container {
   margin-left: 3%;
+}
+
+#begin {
+  display: none;
 }
 
 img {

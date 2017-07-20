@@ -152,6 +152,19 @@ var restartMatch = function() {
 }
 
 $(function() {
+  $(".start-setup").show();
+
+  $("#humanChoice").click(function() {
+    $(".human-players").show();
+    $(".start-setup").hide();
+    $("#begin").show();
+  });
+
+  $("#computerChoice").click(function() {
+    $(".human-computer").show();
+    $(".start-setup").hide();
+    $("#begin").show();
+  });
 
   $("#begin").click(function() {
     thisBoard = new Board();
@@ -177,6 +190,9 @@ $(function() {
     playerScoreDisplay(player1, player2);
     $(".nameTurn").text(player1.name + "'s Turn");
     $(".start-setup").hide();
+    $(".human-computer").hide();
+    $(".human-players").hide();
+    $("#begin").hide();
     $(".display-board").show();
   });
 
