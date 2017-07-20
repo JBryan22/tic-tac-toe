@@ -50,6 +50,7 @@ var gameWin = function(board) {
   else {
     alert('Error');
   }
+  checkMatchWin(player1, player2);
   board.resetBoard();
   resetHtmlBoard();
   playerScoreDisplay(player1, player2);
@@ -58,15 +59,34 @@ var gameWin = function(board) {
 var gameTie = function(board) {
   player1.score += 1;
   player2.score += 1;
+  checkMatchWin(player1, player2);
   board.resetBoard();
   resetHtmlBoard();
   playerScoreDisplay(player1, player2);
-}
+};
 
 var playerScoreDisplay = function(player1, player2) {
   $(".playerOneScore").text(player1.name + " Score:  " + player1.score);
   $(".playerTwoScore").text(player2.name + " Score:  " + player2.score);
-}
+};
+
+var endMatch = function(winner) {
+    $(".display-board").hide();
+    $(".matchEndDisplay").show();
+    $(".matchEndDisplay").append("<h2>" + winner + " Wins!!!</h2>")
+};
+
+var checkMatchWin = function(player1, player2) {
+  if (player1.score >= 5 && player2.score >= 5) {
+    endMatch("tie");
+  }
+  else if (player1.score >= 5) {
+    endMatch(player1.name);
+  }
+  else if (player2.score >= 5) {
+    endMatch(player2.name);
+  }
+};
 
 var checkWinCondition = function(board, symbol) {
   var win = false;
@@ -139,10 +159,10 @@ $(function() {
       player2.name = "Player Two";
     }
 
-    $(".playerOneScore").text(player1.name + " Score: 0");
-    $(".playerTwoScore").text(player2.name + " Score: 0");
+    playerScoreDisplay(player1, player2);
     $(".nameTurn").text(player1.name + "'s Turn");
     $(".start-setup").hide();
+    $(".display-board").show();
   });
 
   $(".space1").click(function(){
