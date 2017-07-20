@@ -40,7 +40,7 @@ Board.prototype.resetBoard = function() {
   });
 };
 
-var gameWin = function(player) {
+var gameWin = function(board) {
   if (player1.myTurn) {
     player1.score += 2;
   }
@@ -52,19 +52,43 @@ var gameWin = function(player) {
   }
   board.resetBoard();
   resetHtmlBoard();
+  playerScoreDisplay(player1, player2);
 };
 
+var gameTie = function(board) {
+  player1.score += 1;
+  player2.score += 1;
+  board.resetBoard();
+  resetHtmlBoard();
+  playerScoreDisplay(player1, player2);
+}
+
+var playerScoreDisplay = function(player1, player2) {
+  $(".playerOneScore").text(player1.name + " Score:  " + player1.score);
+  $(".playerTwoScore").text(player2.name + " Score:  " + player2.score);
+}
+
 var checkWinCondition = function(board, symbol) {
+  var win = false;
+
   winningLines.forEach(function(winningArray) {
     if (board.spaces[winningArray[0]].value === symbol &&
         board.spaces[winningArray[1]].value === symbol &&
         board.spaces[winningArray[2]].value === symbol) {
-        return true;
+        win = true;
       }
   });
-    return false;
-    $(".playerOneScore").text(player1.name + " Score:" + player1.score);
-    $(".playerTwoScore").text(player2.name + " Score:" + player2.score);
+    return win;
+};
+
+var checkTie = function(spacesArr) {
+  var tie = true;
+  spacesArr.forEach(function(spaceObj) {
+    if (spaceObj.value === ' ') {
+      tie = false;
+    }
+  });
+  return tie;
 };
 
 var changeGameBoard = function(turn, space) {
@@ -72,6 +96,16 @@ var changeGameBoard = function(turn, space) {
     $(".space" + space).append("<img src='img/" + turn.symbol + ".png'>");
     thisBoard.spaces[space].value = turn.symbol;
   }
+};
+
+var switchTurn = function(player1, player2) {
+  player1.myTurn = !player1.myTurn;
+  player2.myTurn = !player2.myTurn;
+  if (player1.myTurn) {
+    $(".nameTurn").text(player1.name + "'s Turn");
+  } else {
+    $(".nameTurn").text(player2.name + "'s Turn");
+  };
 };
 
 var checkTurn = function(player) {
@@ -115,185 +149,119 @@ $(function() {
 
     changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
 
-    if (checkWinCondition(thisBoard, player2.symbol)) {
-      gameWin();
+    if (checkWinCondition(thisBoard, checkTurn(player1).symbol)) {
+      gameWin(thisBoard);
+    } else if (checkTie(thisBoard.spaces)) {
+      gameTie(thisBoard);
     }
 
-      player1.myTurn = !player1.myTurn;
-      player2.myTurn = !player2.myTurn;
-      if (player1.myTurn) {
-        $(".nameTurn").text(player1.name + "'s Turn");
-      } else {
-        $(".nameTurn").text(player2.name + "'s Turn");
-      };
+    switchTurn(player1, player2);
+
   });
 
   $(".space2").click(function(){
-    if (thisBoard.spaces[2].value === ' ') {
-      if (player1.myTurn) {
-        $(".space2").append("<img src='img/" + player1.symbol + ".png'>");
-        thisBoard.spaces[2].value = player1.symbol;
-        checkWinCondition(thisBoard, player1.symbol);
-      } else {
-        $(".space2").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[2].value = player2.symbol;
-        checkWinCondition(thisBoard, player2.symbol);
-      }
-      player1.myTurn = !player1.myTurn;
-      player2.myTurn = !player2.myTurn;
-      if (player1.myTurn) {
-        $(".nameTurn").text(player1.name + "'s Turn");
-      } else {
-        $(".nameTurn").text(player2.name + "'s Turn");
-      }
+
+    changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
+
+    if (checkWinCondition(thisBoard, checkTurn(player1).symbol)) {
+      gameWin(thisBoard);
+    } else if (checkTie(thisBoard.spaces)) {
+      gameTie(thisBoard);
     }
+
+    switchTurn(player1, player2);
+
   });
 
   $(".space3").click(function(){
-    if (thisBoard.spaces[3].value === ' ') {
-      if (player1.myTurn) {
-        $(".space3").append("<img src='img/" + player1.symbol + ".png'>");
-        thisBoard.spaces[3].value = player1.symbol;
-        checkWinCondition(thisBoard, player1.symbol);
-      } else {
-        $(".space3").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[3].value = player2.symbol;
-        checkWinCondition(thisBoard, player2.symbol);
-      }
-      player1.myTurn = !player1.myTurn;
-      player2.myTurn = !player2.myTurn;
-      if (player1.myTurn) {
-        $(".nameTurn").text(player1.name + "'s Turn");
-      } else {
-        $(".nameTurn").text(player2.name + "'s Turn");
-      }
+    changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
+
+    if (checkWinCondition(thisBoard, checkTurn(player1).symbol)) {
+      gameWin(thisBoard);
+    } else if (checkTie(thisBoard.spaces)) {
+      gameTie(thisBoard);
     }
+
+    switchTurn(player1, player2);
+
   });
 
   $(".space4").click(function(){
-    if (thisBoard.spaces[4].value === ' ') {
-      if (player1.myTurn) {
-        $(".space4").append("<img src='img/" + player1.symbol + ".png'>");
-        thisBoard.spaces[4].value = player1.symbol;
-        checkWinCondition(thisBoard, player1.symbol);
-      } else {
-        $(".space4").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[4].value = player2.symbol;
-        checkWinCondition(thisBoard, player2.symbol);
-      }
-      player1.myTurn = !player1.myTurn;
-      player2.myTurn = !player2.myTurn;
-      if (player1.myTurn) {
-        $(".nameTurn").text(player1.name + "'s Turn");
-      } else {
-        $(".nameTurn").text(player2.name + "'s Turn");
-      }
+    changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
+
+    if (checkWinCondition(thisBoard, checkTurn(player1).symbol)) {
+      gameWin(thisBoard);
+    } else if (checkTie(thisBoard.spaces)) {
+      gameTie(thisBoard);
     }
+
+    switchTurn(player1, player2);
+
   });
 
   $(".space5").click(function(){
-    if (thisBoard.spaces[5].value === ' ') {
-      if (player1.myTurn) {
-        $(".space5").append("<img src='img/" + player1.symbol + ".png'>");
-        thisBoard.spaces[5].value = player1.symbol;
-        checkWinCondition(thisBoard, player1.symbol);
-      } else {
-        $(".space5").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[5].value = player2.symbol;
-        checkWinCondition(thisBoard, player2.symbol);
-      }
-      player1.myTurn = !player1.myTurn;
-      player2.myTurn = !player2.myTurn;
-      if (player1.myTurn) {
-        $(".nameTurn").text(player1.name + "'s Turn");
-      } else {
-        $(".nameTurn").text(player2.name + "'s Turn");
-      }
+    changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
+
+    if (checkWinCondition(thisBoard, checkTurn(player1).symbol)) {
+      gameWin(thisBoard);
+    } else if (checkTie(thisBoard.spaces)) {
+      gameTie(thisBoard);
     }
+
+    switchTurn(player1, player2);
+
   });
 
   $(".space6").click(function(){
-    if (thisBoard.spaces[6].value === ' ') {
-      if (player1.myTurn) {
-        $(".space6").append("<img src='img/" + player1.symbol + ".png'>");
-        thisBoard.spaces[6].value = player1.symbol;
-        checkWinCondition(thisBoard, player1.symbol);
-      } else {
-        $(".space6").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[6].value = player2.symbol;
-        checkWinCondition(thisBoard, player2.symbol);
-      }
-      player1.myTurn = !player1.myTurn;
-      player2.myTurn = !player2.myTurn;
-      if (player1.myTurn) {
-        $(".nameTurn").text(player1.name + "'s Turn");
-      } else {
-        $(".nameTurn").text(player2.name + "'s Turn");
-      }
+    changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
+
+    if (checkWinCondition(thisBoard, checkTurn(player1).symbol)) {
+      gameWin(thisBoard);
+    } else if (checkTie(thisBoard.spaces)) {
+      gameTie(thisBoard);
     }
+
+    switchTurn(player1, player2);
+
   });
 
   $(".space7").click(function(){
-    if (thisBoard.spaces[7].value === ' ') {
-      if (player1.myTurn) {
-        $(".space7").append("<img src='img/" + player1.symbol + ".png'>");
-        thisBoard.spaces[7].value = player1.symbol;
-        checkWinCondition(thisBoard, player1.symbol);
-      } else {
-        $(".space7").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[7].value = player2.symbol;
-        checkWinCondition(thisBoard, player2.symbol);
-      }
-      player1.myTurn = !player1.myTurn;
-      player2.myTurn = !player2.myTurn;
-      if (player1.myTurn) {
-        $(".nameTurn").text(player1.name + "'s Turn");
-      } else {
-        $(".nameTurn").text(player2.name + "'s Turn");
-      }
+    changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
+
+    if (checkWinCondition(thisBoard, checkTurn(player1).symbol)) {
+      gameWin(thisBoard);
+    } else if (checkTie(thisBoard.spaces)) {
+      gameTie(thisBoard);
     }
+
+    switchTurn(player1, player2);
+
   });
 
   $(".space8").click(function(){
-    if (thisBoard.spaces[8].value === ' ') {
-      if (player1.myTurn) {
-        $(".space8").append("<img src='img/" + player1.symbol + ".png'>");
-        thisBoard.spaces[8].value = player1.symbol;
-        checkWinCondition(thisBoard, player1.symbol);
-      } else {
-        $(".space8").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[8].value = player2.symbol;
-        checkWinCondition(thisBoard, player2.symbol);
-      }
-      player1.myTurn = !player1.myTurn;
-      player2.myTurn = !player2.myTurn;
-      if (player1.myTurn) {
-        $(".nameTurn").text(player1.name + "'s Turn");
-      } else {
-        $(".nameTurn").text(player2.name + "'s Turn");
-      }
+    changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
+
+    if (checkWinCondition(thisBoard, checkTurn(player1).symbol)) {
+      gameWin(thisBoard);
+    } else if (checkTie(thisBoard.spaces)) {
+      gameTie(thisBoard);
     }
+
+    switchTurn(player1, player2);
+
   });
 
   $(".space9").click(function(){
-    if (thisBoard.spaces[9].value === ' ') {
-      if (player1.myTurn) {
-        $(".space9").append("<img src='img/" + player1.symbol + ".png'>");
-        thisBoard.spaces[9].value = player1.symbol;
-        checkWinCondition(thisBoard, player1.symbol);
-      } else {
-        $(".space9").append("<img src='img/" + player2.symbol + ".png'>");
-        thisBoard.spaces[9].value = player2.symbol;
-        checkWinCondition(thisBoard, player2.symbol);
-      }
-      player1.myTurn = !player1.myTurn;
-      player2.myTurn = !player2.myTurn;
-      if (player1.myTurn) {
-        $(".nameTurn").text(player1.name + "'s Turn");
-      } else {
-        $(".nameTurn").text(player2.name + "'s Turn");
-      }
+    changeGameBoard(checkTurn(player1), this.className.replace(/[^0-9]/g, ''));
+
+    if (checkWinCondition(thisBoard, checkTurn(player1).symbol)) {
+      gameWin(thisBoard);
+    } else if (checkTie(thisBoard.spaces)) {
+      gameTie(thisBoard);
     }
+
+    switchTurn(player1, player2);
+
   });
 
 });
