@@ -31,3 +31,7 @@ img {
 .matchEndDisplay {
   display: none;
 }
+
+.restart-match {
+  display:none;
+}

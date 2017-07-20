@@ -71,9 +71,20 @@ var playerScoreDisplay = function(player1, player2) {
 };
 
 var endMatch = function(winner) {
+
+  if(winner === 'tie') {
     $(".display-board").hide();
     $(".matchEndDisplay").show();
-    $(".matchEndDisplay").append("<h2>" + winner + " Wins!!!</h2>")
+    $(".matchEndDisplay").append("<h2>It's a Tie!</h2>");
+    $(".restart-match").show();
+    $(".nameTurn").hide();
+  } else {
+    $(".display-board").hide();
+    $(".matchEndDisplay").show();
+    $(".matchEndDisplay").append("<h2>" + winner + " Wins!!!</h2>");
+    $(".restart-match").show();
+    $(".nameTurn").hide();
+  }
 };
 
 var checkMatchWin = function(player1, player2) {
@@ -135,6 +146,10 @@ var checkTurn = function(player) {
     return player2;
   }
 };
+
+var restartMatch = function() {
+
+}
 
 $(function() {
 
@@ -282,6 +297,9 @@ $(function() {
 
     switchTurn(player1, player2);
 
+  });
+
+  $(".restart-match").submit(function(event) {
   });
 
 });
