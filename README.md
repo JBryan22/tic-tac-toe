@@ -29,6 +29,10 @@ _You must have the appropriate folders including the css, js, and img folder and
 | 8. Allow users to play again | press Play Again button | New game arrives  |
 | 9. Switch between who is going first  | Player 1 goes 1st  | Player 2 goes 1st in next game  |
 | 10. Check win status of point values  | Player 1:5 points, Player 2: 3 points  | Player 1 Wins! |
+| 11. Allow user to choose computer or human opponent | Click Computer Button  | Show field for entering one name.  |
+| 12. Give computer opportunity to choose a space | Player chooses space 1 | Computer chooses an empty space |
+| 13. Computer checks middle space if empty | Player chooses space 1 | Computer chooses space 5 |
+
 
 ## Known Bugs
 
