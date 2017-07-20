@@ -2,10 +2,35 @@ var thisBoard;
 var player1;
 var player2;
 var winningLines = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
+var isSinglePlayer = false;
 
 function Game() {
 
 }
+
+// Computer logic
+var chooseSpace = function(emptySpaces) {
+  changeGameBoard(checkTurn(player1), emptySpaces[parseInt((Math.random() * emptySpaces.length))]);
+
+  if (checkWinCondition(thisBoard, checkTurn(player1).symbol)) {
+    gameWin(thisBoard);
+  } else if (checkTie(thisBoard.spaces)) {
+    gameTie(thisBoard);
+  }
+
+};
+
+var findsEmptySpaces = function(spaces) {
+  var emptySpaces = [];
+  spaces.forEach(function(spaceObj) {
+    if (spaceObj.value === ' ') {
+      emptySpaces.push(spaceObj.spot)
+    }
+  });
+  chooseSpace(emptySpaces);
+  // return emptySpaces;
+};
+
 
 function Player(myTurn, symbol) {
   this.myTurn = myTurn;
@@ -152,6 +177,8 @@ var restartMatch = function() {
 }
 
 $(function() {
+
+
   $(".start-setup").show();
 
   $("#humanChoice").click(function() {
@@ -164,7 +191,10 @@ $(function() {
     $(".human-computer").show();
     $(".start-setup").hide();
     $("#begin").show();
+    isSinglePlayer = true;
   });
+
+
 
   $("#begin").click(function() {
     thisBoard = new Board();
@@ -183,6 +213,8 @@ $(function() {
 
     if (player2Input) {
       player2.name = player2Input;
+    } else if (isSinglePlayer) {
+      player2.name = "Computer"
     } else {
       player2.name = "Player Two";
     }
@@ -205,8 +237,13 @@ $(function() {
     } else if (checkTie(thisBoard.spaces)) {
       gameTie(thisBoard);
     }
-
+    console.log('outside computer turn');
     switchTurn(player1, player2);
+    if (isSinglePlayer) {
+      console.log('inside computer turn');
+      findsEmptySpaces(thisBoard.spaces);
+      switchTurn(player1, player2);
+    }
 
   });
 
@@ -219,9 +256,13 @@ $(function() {
     } else if (checkTie(thisBoard.spaces)) {
       gameTie(thisBoard);
     }
-
+    console.log('outside computer turn');
     switchTurn(player1, player2);
-
+    if (isSinglePlayer) {
+      console.log('inside computer turn');
+      findsEmptySpaces(thisBoard.spaces);
+      switchTurn(player1, player2);
+    }
   });
 
   $(".space3").click(function(){
@@ -232,9 +273,13 @@ $(function() {
     } else if (checkTie(thisBoard.spaces)) {
       gameTie(thisBoard);
     }
-
+    console.log('outside computer turn');
     switchTurn(player1, player2);
-
+    if (isSinglePlayer) {
+      console.log('inside computer turn');
+      findsEmptySpaces(thisBoard.spaces);
+      switchTurn(player1, player2);
+    }
   });
 
   $(".space4").click(function(){
@@ -245,9 +290,13 @@ $(function() {
     } else if (checkTie(thisBoard.spaces)) {
       gameTie(thisBoard);
     }
-
+    console.log('outside computer turn');
     switchTurn(player1, player2);
-
+    if (isSinglePlayer) {
+      console.log('inside computer turn');
+      findsEmptySpaces(thisBoard.spaces);
+      switchTurn(player1, player2);
+    }
   });
 
   $(".space5").click(function(){
@@ -258,9 +307,13 @@ $(function() {
     } else if (checkTie(thisBoard.spaces)) {
       gameTie(thisBoard);
     }
-
+    console.log('outside computer turn');
     switchTurn(player1, player2);
-
+    if (isSinglePlayer) {
+      console.log('inside computer turn');
+      findsEmptySpaces(thisBoard.spaces);
+      switchTurn(player1, player2);
+    }
   });
 
   $(".space6").click(function(){
@@ -271,9 +324,13 @@ $(function() {
     } else if (checkTie(thisBoard.spaces)) {
       gameTie(thisBoard);
     }
-
+    console.log('outside computer turn');
     switchTurn(player1, player2);
-
+    if (isSinglePlayer) {
+      console.log('inside computer turn');
+      findsEmptySpaces(thisBoard.spaces);
+      switchTurn(player1, player2);
+    }
   });
 
   $(".space7").click(function(){
@@ -284,9 +341,13 @@ $(function() {
     } else if (checkTie(thisBoard.spaces)) {
       gameTie(thisBoard);
     }
-
+    console.log('outside computer turn');
     switchTurn(player1, player2);
-
+    if (isSinglePlayer) {
+      console.log('inside computer turn');
+      findsEmptySpaces(thisBoard.spaces);
+      switchTurn(player1, player2);
+    }
   });
 
   $(".space8").click(function(){
@@ -297,9 +358,13 @@ $(function() {
     } else if (checkTie(thisBoard.spaces)) {
       gameTie(thisBoard);
     }
-
+    console.log('outside computer turn');
     switchTurn(player1, player2);
-
+    if (isSinglePlayer) {
+      console.log('inside computer turn');
+      findsEmptySpaces(thisBoard.spaces);
+      switchTurn(player1, player2);
+    }
   });
 
   $(".space9").click(function(){
@@ -310,9 +375,13 @@ $(function() {
     } else if (checkTie(thisBoard.spaces)) {
       gameTie(thisBoard);
     }
-
+    console.log('outside computer turn');
     switchTurn(player1, player2);
-
+    if (isSinglePlayer) {
+      console.log('inside computer turn');
+      findsEmptySpaces(thisBoard.spaces);
+      switchTurn(player1, player2);
+    }
   });
 
   $(".restart-match").submit(function(event) {
